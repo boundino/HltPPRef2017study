@@ -54,14 +54,12 @@ void loopcand(TString inputname, Int_t HLTcut, Float_t Dptcut, Float_t Tkptcut, 
           if(Dpt[j] > Dptcut && !HLTpath)
             {
               std::cout<<std::setiosflags(std::ios::left)<<std::setw(14)<<i<<std::setw(14)<<Dpt[j];
-              if(matching(Dtrk1Pt[j],vTkpt,2) && matching(Dtrk1Eta[j],vTketa,0.02) && matching(Dtrk1Phi[j],vTkphi,0.02))
-                std::cout<<std::setiosflags(std::ios::left)<<xjjc::green<<std::setw(14)<<Dtrk1Pt[j]<<std::setw(14)<<Dtrk1Eta[j]<<std::setw(14)<<Dtrk1Phi[j]<<std::setw(14)<<Dtrk1originalAlgo[j]<<xjjc::nc;
-              else
-                std::cout<<std::setiosflags(std::ios::left)<<xjjc::red<<std::setw(14)<<Dtrk1Pt[j]<<std::setw(14)<<Dtrk1Eta[j]<<std::setw(14)<<Dtrk1Phi[j]<<std::setw(14)<<Dtrk1originalAlgo[j]<<xjjc::nc;
-              if(matching(Dtrk2Pt[j],vTkpt,2) && matching(Dtrk2Eta[j],vTketa,0.02) && matching(Dtrk2Phi[j],vTkphi,0.02))
-                std::cout<<std::setiosflags(std::ios::left)<<xjjc::green<<std::setw(14)<<Dtrk2Pt[j]<<std::setw(14)<<Dtrk2Eta[j]<<std::setw(14)<<Dtrk2Phi[j]<<std::setw(14)<<Dtrk2originalAlgo[j]<<xjjc::nc;
-              else
-                std::cout<<std::setiosflags(std::ios::left)<<xjjc::red<<std::setw(14)<<Dtrk2Pt[j]<<std::setw(14)<<Dtrk2Eta[j]<<std::setw(14)<<Dtrk2Phi[j]<<std::setw(14)<<Dtrk2originalAlgo[j]<<xjjc::nc;
+              if(matching(Dtrk1Pt[j],vTkpt,2) && matching(Dtrk1Eta[j],vTketa,0.02) && matching(Dtrk1Phi[j],vTkphi,0.02)) std::cout<<xjjc::green;
+              else std::cout<<xjjc::red;
+              std::cout<<std::setiosflags(std::ios::left)<<std::setw(14)<<Dtrk1Pt[j]<<std::setw(14)<<Dtrk1Eta[j]<<std::setw(14)<<Dtrk1Phi[j]<<std::setw(14)<<Dtrk1originalAlgo[j]<<xjjc::nc;
+              if(matching(Dtrk2Pt[j],vTkpt,2) && matching(Dtrk2Eta[j],vTketa,0.02) && matching(Dtrk2Phi[j],vTkphi,0.02)) std::cout<<xjjc::green;
+              else std::cout<<xjjc::green;
+              std::cout<<std::setiosflags(std::ios::left)<<xjjc::red<<std::setw(14)<<Dtrk2Pt[j]<<std::setw(14)<<Dtrk2Eta[j]<<std::setw(14)<<Dtrk2Phi[j]<<std::setw(14)<<Dtrk2originalAlgo[j]<<xjjc::nc;
               std::cout<<std::endl;
               flag++;
             }
