@@ -1,5 +1,6 @@
 #include "xjjrootuti.h"
 #define MAX_XB       20000
+#define MAX_TRACK    6000
 
 int     RunNo;
 int     EvtNo;
@@ -147,4 +148,28 @@ void setbranchesaddress(TTree* dnt)
   xjjroot::setbranchaddress(dnt, "Dtrk1highPurity", Dtrk1highPurity);
   xjjroot::setbranchaddress(dnt, "Dtrk2highPurity", Dtrk2highPurity);
 
+}
+
+
+int TrackInfo_size;
+float TrackInfo_pt[MAX_TRACK];
+float TrackInfo_eta[MAX_TRACK];
+float TrackInfo_phi[MAX_TRACK];
+int TrackInfo_trkAlgo[MAX_TRACK];
+int TrackInfo_originalTrkAlgo[MAX_TRACK];
+bool TrackInfo_highPurity[MAX_TRACK];
+float TrackInfo_d0[MAX_TRACK];
+float TrackInfo_d0error[MAX_TRACK];
+
+void setbranchesaddress_root(TTree* root)
+{
+  xjjroot::setbranchaddress(root, "TrackInfo.size", &TrackInfo_size);
+  xjjroot::setbranchaddress(root, "TrackInfo.pt", TrackInfo_pt);
+  xjjroot::setbranchaddress(root, "TrackInfo.eta", TrackInfo_eta);
+  xjjroot::setbranchaddress(root, "TrackInfo.phi", TrackInfo_phi);
+  xjjroot::setbranchaddress(root, "TrackInfo.trkAlgo", TrackInfo_trkAlgo);
+  xjjroot::setbranchaddress(root, "TrackInfo.originalTrkAlgo", TrackInfo_originalTrkAlgo);
+  xjjroot::setbranchaddress(root, "TrackInfo.highPurity", TrackInfo_highPurity);
+  xjjroot::setbranchaddress(root, "TrackInfo.d0", TrackInfo_d0);
+  xjjroot::setbranchaddress(root, "TrackInfo.d0error", TrackInfo_d0error);
 }
