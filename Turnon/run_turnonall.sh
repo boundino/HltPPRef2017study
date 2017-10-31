@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CASES=(5)
+CASES=(4)
 
 ##
 
@@ -53,7 +53,7 @@ PATHS=(
     "HLT_DsPPTrackingGlobal_Dpt8_v1 L1_SingleJet16_Final HLT_DsPPTrackingGlobal_Dpt15_v1 L1_SingleJet24_Final HLT_DsPPTrackingGlobal_Dpt30_v1 L1_SingleJet40_Final HLT_DsPPTrackingGlobal_Dpt50_v1 L1_SingleJet44_Final"
     "HLT_DmesonPPTrackingGlobal_Dpt8_v1 L1_SingleJet16_Final HLT_DmesonPPTrackingGlobal_Dpt15_v1 L1_SingleJet24_Final HLT_DmesonPPTrackingGlobal_Dpt30_v1 L1_SingleJet40_Final HLT_DmesonPPTrackingGlobal_Dpt50_v1 L1_SingleJet44_Final"
     "HLT_DmesonPPTrackingGlobal_Dpt8_v1 L1_SingleJet16_Final HLT_DmesonPPTrackingGlobal_Dpt15_v1 L1_SingleJet24_Final HLT_DmesonPPTrackingGlobal_Dpt30_v1 L1_SingleJet40_Final HLT_DmesonPPTrackingGlobal_Dpt50_v1 L1_SingleJet44_Final"
-    "L1_SingleJet16_Final 1 L1_SingleJet24_Final 1 L1_SingleJet40_Final 1 L1_SingleJet44_Final 1"
+    "L1_SingleJet8_Final 1 L1_SingleJet16_Final 1 L1_SingleJet24_Final 1 L1_SingleJet32_Final 1 L1_SingleJet44_Final 1 L1_SingleJet60_Final 1"
     "HLT_DmesonPPTrackingGlobal_Dpt8_v1 L1_SingleJet16_Final HLT_DmesonPPTrackingGlobal_Dpt15_v1 L1_SingleJet24_Final HLT_DmesonPPTrackingGlobal_Dpt30_v1 L1_SingleJet40_Final HLT_DmesonPPTrackingGlobal_Dpt50_v1 L1_SingleJet44_Final"
 )
 

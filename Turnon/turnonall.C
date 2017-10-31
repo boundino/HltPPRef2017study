@@ -7,7 +7,7 @@
 
 const int nBin = 17;
 Float_t bins[nBin+1]={4, 6, 8, 10, 12, 15, 18, 20, 24, 28, 30, 34, 40, 45, 50, 60, 70, 80};
-Color_t tcolor[] = {kAzure+2, kRed+2, kGreen+3, kMagenta+2, kCyan+1};
+Color_t tcolor[] = {kAzure+2, kRed+2, kGreen+3, kMagenta+2, kCyan+1,kCyan+3};
 void turnonall(TString inputname, TString outputname, TString treename, TString branchname, 
                TString weight, TString Dcut, std::vector<TString> HLTcut, std::vector<TString> L1cut)
 {
@@ -45,7 +45,8 @@ void turnonall(TString inputname, TString outputname, TString treename, TString 
 
   TCanvas* c = new TCanvas("c", "", 600, 600);
   hempty->Draw();
-  TLegend* leg = new TLegend(0.40, 0.70-0.055*geff.size(), 0.85, 0.70);
+  gPad->SetGridx();
+  TLegend* leg = new TLegend(0.55, 0.70-0.055*geff.size(), 0.90, 0.70);
   xjjroot::setleg(leg, 0.025);
   for(int i=0;i<geff.size();i++)
     {
