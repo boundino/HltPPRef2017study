@@ -7,7 +7,7 @@
 #include <TGraphAsymmErrors.h>
 
 int maxevt = -1;
-Color_t tcolor[] = {kAzure+2, kRed+2, kGreen+3, kMagenta+2, kCyan+1, kOrange+6};
+Color_t tcolor[] = {kAzure+2, kRed+2, kGreen+3, kMagenta+2, kCyan+1, kCyan+3};
 void trkturnon(TString inputname, std::vector<TString> HLTcut, std::vector<TString> L1cut)
 {
   if(HLTcut.size() != L1cut.size()) return;
@@ -51,8 +51,9 @@ void trkturnon(TString inputname, std::vector<TString> HLTcut, std::vector<TStri
       float leadingtrkpt=0;
       for(int j=0;j<nTrk;j++)
         {
-          if(highPurity[j]&&TMath::Abs(trkEta[j])<1.&&trkAlgo[j]!=11&&TMath::Abs(trkPtError[j]/trkPt[j])<0.1&&TMath::Abs(trkDz1[j]/trkDzError1[j])<3&&TMath::Abs(trkDxy1[j]/trkDxyError1[j])<3&&trkNHit[j]>=11&&(trkChi2[j]/trkNdof[j])/trkNlayer[j]<0.15 &&
-             trkPt[j]>leadingtrkpt) {leadingtrkpt = trkPt[j];}
+          if(!(highPurity[j]&&TMath::Abs(trkEta[j])<1.&&trkAlgo[j]!=11&&TMath::Abs(trkPtError[j]/trkPt[j])<0.1&&TMath::Abs(trkDz1[j]/trkDzError1[j])<3&&TMath::Abs(trkDxy1[j]/trkDxyError1[j])<3&&trkNHit[j]>=11&&(trkChi2[j]/trkNdof[j])/trkNlayer[j]<0.15)) continue;
+          // if(!(highPurity[j])) continue;
+          if(trkPt[j]>leadingtrkpt) {leadingtrkpt = trkPt[j];}
         }
 
       if(leadingtrkpt>0)
@@ -84,11 +85,15 @@ void trkturnon(TString inputname, std::vector<TString> HLTcut, std::vector<TStri
 
 int main()
 {
+  trkturnon("/export/d00/scratch/jwang/HLTppRef/crab_EvtMatching_V14_pp_20171027_Dijet_5020GeV_pythia8_20171005.root",
+            std::vector<TString>{"HLT_FullTracks_HighPt18_v1", "HLT_FullTracks_HighPt24_v1", "HLT_FullTracks_HighPt34_v1", "HLT_FullTracks_HighPt45_v1"},
+            std::vector<TString>{"L1_SingleJet16_Final", "L1_SingleJet24_Final", "L1_SingleJet32_Final", "L1_SingleJet44_Final"});
+
   // trkturnon("/export/d00/scratch/jwang/HLTppRef/crab_EvtMatching_V14_pp_20171027_Dijet_5020GeV_pythia8_20171005.root",
   //           std::vector<TString>{"HLT_FullTracks_HighPt18_v1", "HLT_FullTracks_HighPt24_v1", "HLT_FullTracks_HighPt34_v1", "HLT_FullTracks_HighPt45_v1"},
   //           std::vector<TString>{"1", "1", "1", "1"});
 
-  trkturnon("/export/d00/scratch/jwang/HLTppRef/crab_EvtMatching_V14_pp_20171027_Dijet_5020GeV_pythia8_20171005.root",
-            std::vector<TString>{"L1_SingleJet8_Final", "L1_SingleJet16_Final", "L1_SingleJet24_Final", "L1_SingleJet32_Final", "L1_SingleJet44_Final", "L1_SingleJet60_Final"},
-            std::vector<TString>{"1", "1", "1", "1", "1", "1"});
+  // trkturnon("/export/d00/scratch/jwang/HLTppRef/crab_EvtMatching_V14_pp_20171027_Dijet_5020GeV_pythia8_20171005.root",
+  //           std::vector<TString>{"L1_SingleJet8_Final", "L1_SingleJet16_Final", "L1_SingleJet24_Final", "L1_SingleJet32_Final", "L1_SingleJet44_Final", "L1_SingleJet60_Final"},
+  //           std::vector<TString>{"1", "1", "1", "1", "1", "1"});
 }

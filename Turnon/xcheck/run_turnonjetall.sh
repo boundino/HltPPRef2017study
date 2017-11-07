@@ -16,7 +16,7 @@ SELECTIONS=(
 )
 BRANCHNAME=(
     "Max"'$'"(rawpt)"
-    "Max"'$'"(rawpt)"
+    "Max"'$'"(genpt)"
 )
 OUTPUTNAME=("jet" "jet_dijet")
 
