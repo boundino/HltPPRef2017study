@@ -33,7 +33,7 @@ void turnonall(TString inputname, TString outputname, TString treename, TString 
       ntD->Project(Form("hdenorm_%d",i), branchname.Data(), TCut(weight.Data())*(TCut(L1cut[i].Data())));
       geff[i] = new TGraphAsymmErrors;
       geff[i]->BayesDivide(hnorm[i], hdenorm[i]);
-      xjjroot::setthgrstyle(geff[i], tcolor[i], 20, 0.9, kBlack);
+      xjjroot::setthgrstyle(geff[i], tcolor[i], 20, 1.0, kBlack);
     }
   
   TH2F* hempty = new TH2F("hempty", Form(";%s;Efficiency",xtitle.Data()), 10, bins[0], bins[nBin], 10, 0, 1.0);
