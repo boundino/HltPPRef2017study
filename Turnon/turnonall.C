@@ -4,6 +4,7 @@
 #include <TGraphAsymmErrors.h>
 #include <TH2F.h>
 #include <TCut.h>
+#include <iostream>
 
 Color_t tcolor[] = {kAzure+2, kRed+2, kGreen+3, kViolet-7, kCyan+1, kCyan+3};
 void turnonall(TString inputname, TString outputname, TString treename, TString branchname, TString xtitle,
@@ -14,7 +15,8 @@ void turnonall(TString inputname, TString outputname, TString treename, TString 
   xjjroot::setgstyle();
 
   TFile* inputfile = new TFile(inputname.Data());
-  TTree* hlt = (TTree*)inputfile->Get("hltbitanalysis/HltTree");
+  // TTree* hlt = (TTree*)inputfile->Get("hltbitanalysis/HltTree");
+  TTree* hlt = (TTree*)inputfile->Get("hltanalysisReco/HltTree");
   TTree* hi = (TTree*)inputfile->Get("hiEvtAnalyzer/HiTree");
   TTree* ntD = (TTree*)inputfile->Get(Form("%s",treename.Data()));
   ntD->AddFriend(hlt);
@@ -30,7 +32,9 @@ void turnonall(TString inputname, TString outputname, TString treename, TString 
       hdenorm[i] = new TH1D(Form("hdenorm_%d",i),"",nBin,bins);
       hdenorm[i]->Sumw2();
       ntD->Project(Form("hnorm_%d",i), branchname.Data(), TCut(weight.Data())*(TCut(L1cut[i].Data())&&TCut(HLTcut[i].Data())));
+      std::cout<<hnorm[i]->GetEntries()<<std::endl;
       ntD->Project(Form("hdenorm_%d",i), branchname.Data(), TCut(weight.Data())*(TCut(L1cut[i].Data())));
+      std::cout<<hdenorm[i]->GetEntries()<<std::endl;
       geff[i] = new TGraphAsymmErrors;
       geff[i]->BayesDivide(hnorm[i], hdenorm[i]);
       xjjroot::setthgrstyle(geff[i], tcolor[i], 20, 1.0, kBlack);
