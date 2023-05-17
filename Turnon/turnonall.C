@@ -8,7 +8,7 @@
 
 Color_t tcolor[] = {kAzure+2, kRed+2, kGreen+3, kViolet-7, kCyan+1, kCyan+3};
 void turnonall(TString inputname, TString outputname, TString treename, TString branchname, TString xtitle,
-               TString weight, TString Dcut, std::vector<TString> HLTcut, std::vector<TString> L1cut)
+               TString weight, TString Dcut, std::vector<TString> prescl, std::vector<TString> HLTcut, std::vector<TString> L1cut)
 {
   if(HLTcut.size() != L1cut.size()) return;
 
@@ -31,7 +31,7 @@ void turnonall(TString inputname, TString outputname, TString treename, TString 
       hnorm[i]->Sumw2();
       hdenorm[i] = new TH1D(Form("hdenorm_%d",i),"",nBin,bins);
       hdenorm[i]->Sumw2();
-      ntD->Project(Form("hnorm_%d",i), branchname.Data(), TCut(weight.Data())*(TCut(L1cut[i].Data())&&TCut(HLTcut[i].Data())));
+      ntD->Project(Form("hnorm_%d",i), branchname.Data(), TCut(Form("%s*%s",prescl[i].Data(),weight.Data()))*(TCut(L1cut[i].Data())&&TCut(HLTcut[i].Data())));
       std::cout<<hnorm[i]->GetEntries()<<std::endl;
       ntD->Project(Form("hdenorm_%d",i), branchname.Data(), TCut(weight.Data())*(TCut(L1cut[i].Data())));
       std::cout<<hdenorm[i]->GetEntries()<<std::endl;
@@ -60,16 +60,18 @@ void turnonall(TString inputname, TString outputname, TString treename, TString 
 
 int main(int argc, char* argv[])
 {
-  if((argc-8)>=2 && (argc-8)%2==0)
+  if((argc-8)>=3 && (argc-8)%3==0)
     {
+      std::vector<TString> vPrescl;
       std::vector<TString> vHLT;
       std::vector<TString> vL1;
-      for(int i=8;i<argc;i+=2)
+      for(int i=8;i<argc;i+=3)
         {
-          vHLT.push_back(argv[i]);
-          vL1.push_back(argv[i+1]);
+          vPrescl.push_back(argv[i]);
+          vHLT.push_back(argv[i+1]);
+          vL1.push_back(argv[i+2]);
         }
-      turnonall(argv[1], argv[2], argv[3], argv[4], argv[5], argv[6], argv[7], vHLT, vL1);
+      turnonall(argv[1], argv[2], argv[3], argv[4], argv[5], argv[6], argv[7], vPrescl, vHLT, vL1);
       return 0;
     }
   return 1;
